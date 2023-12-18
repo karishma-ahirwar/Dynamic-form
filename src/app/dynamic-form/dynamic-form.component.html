@@ -1,0 +1,27 @@
+<form [formGroup]="studentsForm">
+
+    <div formArrayName="entries">
+      <div *ngFor="let entry of entries.controls; let i = index" [formGroupName]="i">
+        
+        <label for="student">Student:</label>
+        <select formControlName="student">
+          <option *ngFor="let name of studentNames" [value]="name">{{ name }}</option>
+        </select>
+  
+        <label for="course">Course:</label>
+        <select formControlName="course">
+          <option *ngFor="let course of courseNames" [value]="course">{{ course }}</option>
+        </select>
+  
+        <label for="time">Time:</label>
+        <input type="time" formControlName="time" placeholder="HRS"/>
+  
+        <button type="button" class="removeEntry" (click)="removeEntry(i)">-</button>
+      </div>
+    </div>
+  
+    <button type="button" class="addEntry" (click)="addEntry()">+</button>
+    <button type="button" class="save-changes" (click)="saveChanges()">Save Changes</button>
+    <button type="button" (click)="loadSavedData()">Load Saved Data</button>
+  </form>
+  
